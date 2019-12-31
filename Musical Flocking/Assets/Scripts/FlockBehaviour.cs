@@ -6,7 +6,7 @@ public class FlockBehaviour : MonoBehaviour
 {
     public Vector3 baseRotation;
 
-    [Range(0, 50)]
+    [Range(-20, 20)]
     public float maxSpeed = 1f;
 
     [Range(.1f, .5f)]
@@ -26,7 +26,13 @@ public class FlockBehaviour : MonoBehaviour
 
     public Vector2 acceleration;
     public Vector2 velocity;
-
+    [Range(-10f,10f)]
+    public float SpeedMultiplier;
+    public bool isMusicalFlock;
+    public bool isBuffer;
+    [SerializeField]private float timerT;
+    float t = 0;
+    [SerializeField] private float AmplitudeLimiter;
     private Vector2 Position
     {
         get
@@ -44,6 +50,7 @@ public class FlockBehaviour : MonoBehaviour
         float angle = Random.Range(0, 2 * Mathf.PI);
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle) + baseRotation);
         velocity = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
+        t = 0;
     }
 
     private void Update()
@@ -57,8 +64,42 @@ public class FlockBehaviour : MonoBehaviour
         UpdatePosition();
         UpdateRotation();
         WrapAround();
+        if (t > timerT)
+        {
+            ChangeWithMusic();
+        }
+        else t += Time.deltaTime;
     }
+    private void ChangeWithMusic()
+    {
+        if (isMusicalFlock)
+        {
+            if (isBuffer)
+            {
+                if (AudioVisuals._AmplitudeBuffer > AmplitudeLimiter) 
+                {
+                    maxSpeed = AudioVisuals._AmplitudeBuffer * SpeedMultiplier; 
+                }
+                else
+                {
+                    maxSpeed = AudioVisuals._AmplitudeBuffer * -SpeedMultiplier;
+                }
 
+            }
+            else 
+            {
+                if (AudioVisuals._AmplitudeBuffer > AmplitudeLimiter)
+                {
+                    maxSpeed = AudioVisuals._Amplitude * SpeedMultiplier;
+                }
+                else
+                {
+                    maxSpeed = AudioVisuals._Amplitude * -SpeedMultiplier;
+
+                }
+            }
+    }
+    }
     private void Flock(IEnumerable<FlockBehaviour> boids)
     {
         var alignment = Alignment(boids);

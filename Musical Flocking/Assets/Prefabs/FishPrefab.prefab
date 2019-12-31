@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 1323561682562886296}
   m_LocalRotation: {x: 0, y: 0, z: -0.84976846, w: 0.52715605}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -46,14 +46,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseRotation: {x: 0, y: 0, z: 0}
-  maxSpeed: 8
+  maxSpeed: 5
   maxForce: 0.03
   neighborhoodRadius: 3
   separationAmount: 1
   cohesionAmount: 1
-  alignmentAmount: 1
+  alignmentAmount: 1.28
   acceleration: {x: 10, y: 0}
   velocity: {x: 0, y: 0}
+  SpeedMultiplier: 10
+  isMusicalFlock: 1
+  isBuffer: 0
+  timerT: 1
+  AmplitudeLimiter: 2
 --- !u!212 &1202013825669775670
 SpriteRenderer:
   m_ObjectHideFlags: 0
