@@ -158,7 +158,7 @@ public class FlockBehaviour : MonoBehaviour
     private void WrapAround()
     {
         if (Position.x < -9) Position = new Vector2(9, Position.y);
-        if (Position.y < -5.43) Position = new Vector2(Position.x, 5.43f);
+        if (Position.y < -5.43f) Position = new Vector2(Position.x, 5.43f);
         if (Position.x > 9) Position = new Vector2(-9, Position.y);
         if (Position.y > 5.43f) Position = new Vector2(Position.x, -5.43f);
     }
