@@ -2,16 +2,9 @@
 ## Display
 #### Works On Flocking And Audio Visualization with FFTWindow.Blackman Spectrum Bands.
 Here is the example Scene:
-![](RoadMapPng.png)
+
 ## RoadMap
-```mermaid
-graph LR
-A[Empty Project] --> B(Audio Visualisation)
-A --> C(Flocking Behavior)
-B --> D{Combination}
-C --> D
-D -- Special Effects --> E(Final Project)
-```
+![](RoadMapPng.png)
 ### 3 Simple Rules of Flocking Behavior:  
 - **Alignment**:  Causes a particular agent to line up with agents close by.
 - **Cohesion**:  Causes agents to steer towards the "center of mass" - that is, the 	   average position of the agents within a certain radius.
